@@ -1,0 +1,67 @@
+/*
+Given an array of integers and numbers k and m, write a function that returns true if given array can be divided into pairs such that the sum of every pair gives remainder m when divided by k.
+Input format :
+Line 1 : Integer N 
+Line 2 : N integers separated be a single space
+Line 3 : Integer K
+Line 4 : Integer M
+Output Format :
+ Boolean
+Constraints :
+ 1 <= N <= 10^4
+ 1 <= M < K <= 10^2
+Sample Input :
+4
+2 1 5 7
+9
+3
+Sample Output :
+true
+Explanation :
+Pairs will be (2,1) and (5,7)
+*/
+
+#include<climits>
+bool CheckSumPairs(int ar[], int n, int k, int m) {
+	
+	if(n%2!=0)
+	return false;
+
+	int count=0;
+
+
+
+
+	for(int i=0;i<n;i++)
+	{
+		if(ar[i]==INT_MIN)
+		continue;
+
+		for(int j=0;j<n;j++)
+		{
+			if(ar[j]==INT_MIN)
+			{
+				continue;
+				
+			}
+			else
+			{
+				if((ar[i]+ar[j])%k==m)
+				{
+					ar[i]=-1;
+					ar[j]=-1;
+					count++;
+					break;
+				}
+			}
+
+		}
+	}
+	for(int i=0; i<n; i++)
+	{
+		if(ar[i]!=-1)
+		return false;
+	}
+	return true;
+	
+}
